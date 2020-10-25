@@ -1,63 +1,55 @@
 package com.example.demo.entities;
 
-import jdk.jfr.Description;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
 
 @Entity
+@Table
 public class RSSFeed {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long guid;
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
+    @Column
     private String title;
+
+    @Column
     private String link;
-    private Date pubDate;
-    private String description;
-    private String source;
 
-    protected RSSFeed() {}
-
-    public RSSFeed(String title, String link, Date pubDate, String description, String source)
-    {
+    public RSSFeed(Long id, String title, String link) {
+        this.id = id;
         this.title = title;
         this.link = link;
-        this.pubDate = pubDate;
-        this.description = description;
-        this.source = source;
     }
 
-    public Long getguid()
-    {
-        return guid;
+    public RSSFeed() {
+
     }
 
-    public String getTitle()
-    {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
         return title;
     }
 
-    public String getLink()
-    {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getLink() {
         return link;
     }
 
-    public Date getPubDate()
-    {
-        return pubDate;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public String getSource()
-    {
-        return source;
+    public void setLink(String link) {
+        this.link = link;
     }
 }
